@@ -17,7 +17,6 @@ class SlickPlugin implements Plugin<Project> {
         
         def logger = project.logger
 
-        project.getPlugins().
         project.extensions.create(SLICK_CONFIG, SlickConfig, project, logger)
         Task schemaGenTask = project.task('generateSlickSchema', type: SlickSchemaGenerator)
         schemaGenTask.group = 'Slick Schemagen'
