@@ -2,8 +2,6 @@ language: groovy
 
 jdk:
   - oraclejdk8
-  - oraclejdk7
-  - openjdk7
 deploy:
   provider: script
   script: scripts/deploy.sh

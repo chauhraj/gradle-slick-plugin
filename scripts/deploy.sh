@@ -1,3 +1,5 @@
+#!/bin/sh
+echo "Running deploy script"
 export USER_HOME="."
 export GRADLE_PROPERTIES_FILE="${GRADLE_HOME}/.gradle/gradle.properties"
 if [ -e ${GRADLE_PROPERTIES_FILES} ]; then
