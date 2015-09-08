@@ -9,5 +9,5 @@ else
 fi
 echo "gradle.publish.key=${GRADLE_PUBLISH_KEY}" >> ${GRADLE_PROPERTIES_FILE}
 echo "gradle.publish.secret=${GRADLE_PUBLISH_SECRET}" >> ${GRADLE_PROPERTIES_FILE}
-./gradlew -Prelease.disableChecks release publishPlugins
+./gradlew -Prelease.disableChecks -Prelease.attachRemote=ssh://git@github.com:chauhraj/gradle-slick-plugin.git release publishPlugins
 
