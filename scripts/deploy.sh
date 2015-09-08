@@ -2,18 +2,15 @@
 echo "Running deploy script"
 export USER_HOME="."
 export GRADLE_PROPERTIES_FILE="${USER_HOME}/.gradle/gradle.properties"
-if [ -e ${GRADLE_PROPERTIES_FILES} ]; then
-   echo "Gradle Properties file ${GRADLE_PROPERTIES_FILE} exists"
-else 
-   mkdir -p "${USER_HOME}/.gradle"
-fi
+mkdir -p "${USER_HOME}/.gradle"
 echo "gradle.publish.key=${GRADLE_PUBLISH_KEY}" >> ${GRADLE_PROPERTIES_FILE}
 echo "gradle.publish.secret=${GRADLE_PUBLISH_SECRET}" >> ${GRADLE_PROPERTIES_FILE}
-./gradlew -Prelease.disableChecks \
-          -Prelease.attachRemote=ssh://git@github.com:chauhraj/gradle-slick-plugin.git \
-          -Pgradle.publish.key=${GRADLE_PUBLISH_KEY}
-          -Pgradle.publish.secret=${GRADLE_PUBLISH_SECRET}
-          --info -S
-          release \
-          publishPlugins
 
+GRADLE_OPTS="-Prelease.disableChecks"
+GRADLE_OPTS="${GRADLE_OPTS} -Prelease.attachRemote=ssh://git@github.com:chauhraj/gradle-slick-plugin.git" 
+GRADLE_OPTS="${GRADLE_OPTS} -Pgradle.publish.key=${GRADLE_PUBLISH_KEY}"
+GRADLE_OPTS="${GRADLE_OPTS} -Pgradle.publish.secret=${GRADLE_PUBLISH_SECRET}"
+GRADLE_OPTS="${GRADLE_OPTS} -Pgradle.publish.secret=${GRADLE_PUBLISH_SECRET}"
+GRADLE_OPTS="${GRADLE_OPTS} -Prelease.customUsername=chauhraj"
+GRADLE_OPTS="${GRADLE_OPTS} -Prelease.customPassword='automatic releases for chauhraj/gradle-slick-plugin'"
+./gradlew  ${GRADLE_OPTS} --info -S release publishPlugins
