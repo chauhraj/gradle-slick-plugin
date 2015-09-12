@@ -9,4 +9,6 @@ echo "gradle.publish.secret=${GRADLE_PUBLISH_SECRET}" >> ${GRADLE_PROPERTIES_FIL
 GRADLE_OPTS="-Prelease.disableChecks"
 GRADLE_OPTS="${GRADLE_OPTS} -Prelease.customUsername=${GITHUB_ACCESS_TOKEN}"
 
+git fetch --unshallow && echo "Repository shouldn't be any more in detached state"
+
 ./gradlew  ${GRADLE_OPTS} --info -S release publishPlugins
