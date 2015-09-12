@@ -16,6 +16,7 @@ plugins {
 apply plugin: 'com.gradle.plugin-publish'
 
 apply plugin: 'groovy'
+apply plugin: 'maven-publish'
 
 if(project.hasProperty('mavenCentral')) {
     apply from: 'gradle/mavenCentral.gradle'
@@ -40,10 +41,21 @@ dependencies {
     
     compile 'com.typesafe.slick:slick_2.11:3.1.0-M2'
     compile 'com.typesafe.slick:slick-codegen_2.11:3.1.0-M2'
+    
+    testCompile 'org.mockito:mockito-core:2.0.31-beta'
+    testCompile 'mysql:mysql-connector-java:5+'
 }
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.6'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
 }
 
 pluginBundle {
