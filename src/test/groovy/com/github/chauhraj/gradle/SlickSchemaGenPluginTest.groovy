@@ -37,7 +37,8 @@ class SlickSchemaGenPluginTest {
         plugin = new SlickSchemaGenPlugin()
         
         Project project = ProjectBuilder.builder().build()
-        plugin.apply( project )        
+
+        plugin.apply( project )
         
     }
     
